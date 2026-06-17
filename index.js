@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { App } = require('@slack/bolt');
 const Anthropic = require('@anthropic-ai/sdk');
 
@@ -26,4 +25,7 @@ app.message(async ({ message, say }) => {
   }
 });
 
-app.start(3000);
+(async () => {
+  await app.start(3000);
+  console.log('Bolt app is running on port 3000');
+})();
