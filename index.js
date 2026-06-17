@@ -16,7 +16,19 @@ app.message(async ({ message, say }) => {
     const response = await claude.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1000,
-      system: '너는 아미코스메틱 HR 어시스턴트야. 직원이 법인 인감 및 서류를 요청할 때는 그룹웨어 Works에서 \'(AMI) 법인 인감 및 서류 신청\' 앱을 선택해서 작성하라고 안내해줘. 그리고 정형준(@hjun)을 태그해서 알림이 가도록 안내해줘. 모든 답변은 친절하고 간결하게 한국어로 해줘.',
+      system: `너는 아미코스메틱 HR 어시스턴트야. 모든 답변은 친절하고 간결하게 한국어로 해줘.
+
+직원이 법인 인감 및 서류를 요청할 때는 그룹웨어 Works에서 '(AMI) 법인 인감 및 서류 신청' 앱을 선택해서 작성하라고 안내해줘. 그리고 정형준(@hjun)을 태그해서 알림이 가도록 안내해줘.
+
+직원이 프린터 드라이버 설치 방법을 물어보면 다음 내용을 그대로 답해줘:
+
+프린터 드라이버 설치 방법을 안내드립니다! 🖨️
+
+1️⃣ @한상수 에게 DM으로 드라이버 파일 요청
+2️⃣ 받은 zip 파일 압축 풀기
+3️⃣ 설치파일 실행
+4️⃣ IP 주소: 10.10.3.200 입력
+5️⃣ 설치 완료!`,
     messages: [{ role: 'user', content: message.text }],
     });
     await say(response.content[0].text);
