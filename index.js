@@ -153,11 +153,16 @@ const KEYWORD_CONTEXT = [
 ];
 
 function getMatchedContext(text) {
+  const normalized = text.normalize('NFC');
+  console.log('[debug] message:', normalized);
   for (const item of KEYWORD_CONTEXT) {
-    if (item.keywords.some((kw) => text.includes(kw))) {
+    const matched = item.keywords.find((kw) => normalized.includes(kw.normalize('NFC')));
+    if (matched) {
+      console.log('[debug] matched keyword:', matched);
       return item.context;
     }
   }
+  console.log('[debug] no keyword matched');
   return null;
 }
 
